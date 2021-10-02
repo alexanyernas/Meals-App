@@ -48,7 +48,19 @@
               <span><v-icon class="mr-2">mdi-playlist-edit</v-icon>Ingredients</span>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab consequuntur ducimus rerum repellendus laudantium necessitatibus vel? Ea expedita quae neque.
+              <ul>
+                <v-list-item 
+                  v-for="( item, index ) in getIngredients()" 
+                  :key="index"
+                  v-if="item" 
+                >
+                  <v-list-item-content 
+                    class="justify-center"
+                  >
+                   {{item}}
+                  </v-list-item-content>
+                </v-list-item>
+              </ul>
             </v-expansion-panel-content>
           </v-expansion-panel>
 
@@ -76,7 +88,16 @@ export default {
       ...mapState(['meal', 'category'])
     },
     methods: {
-      ...mapActions(['getMeal'])
+      ...mapActions(['getMeal']),
+      getIngredients () {
+        const ingredients = []
+        for (let key in this.meal) {
+          if (key.includes('strIngredient')) {
+            ingredients.push(this.meal[key])
+          }
+        }
+        return ingredients;
+      }
     },
     created () {
       this.getMeal( this.$route.params.meal )
