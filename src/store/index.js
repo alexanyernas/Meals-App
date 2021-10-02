@@ -9,7 +9,7 @@ export default new Vuex.Store({
     categories: [],
     category: '',
     meals: [],
-    meal: ''
+    meal: {}
   },
   mutations: {
     setCategories ( state, payload ) {
@@ -44,7 +44,7 @@ export default new Vuex.Store({
     getMeal ( { commit }, meal ) {
       axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal}`)
         .then(( { data } ) => {
-          commit( 'setMeal', data )
+          commit( 'setMeal', data.meals[0] )
         })
     }
   }

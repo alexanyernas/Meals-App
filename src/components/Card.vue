@@ -1,7 +1,6 @@
 <template>
   <v-card
-    class="mx-auto my-2"
-    max-width="344"
+    class="card my-2"
     elevation="6"
     outlined
   >
@@ -43,3 +42,19 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+
+.card
+{
+  width: 344px;
+}
+
+@media only screen and (max-width: 600px) 
+{
+  .card
+  {
+    width: 300px;
+  }
+}
+</style>

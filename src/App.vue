@@ -24,3 +24,27 @@ export default {
   }
 };
 </script>
+
+<style>
+*
+{
+  font-family: 'Poppins', sans-serif;
+}
+
+::-webkit-scrollbar 
+{
+  width: .60rem;
+  border-radius: .5rem;
+}
+
+::-webkit-scrollbar-thumb 
+{
+  background-color: #90CAF9;
+  border-radius: .5rem;
+}
+
+::-webkit-scrollbar-thumb:hover
+{
+  background-color: #1E88E5;
+}
+</style>
