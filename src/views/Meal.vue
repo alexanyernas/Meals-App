@@ -6,7 +6,6 @@
         :to="`/categories/${category}`"
         color="primary"
         outlined
-        
       >
         <v-icon class="mr-1">mdi-arrow-left-bold</v-icon>
         Back
@@ -27,19 +26,19 @@
 
           <v-expansion-panel>
             <v-expansion-panel-header>
-              <span><v-icon class="mr-2">mdi-format-list-checks</v-icon>Category</span>
-            </v-expansion-panel-header>            
+              <span><v-icon class="mr-2">mdi-map-marker-radius</v-icon>Area</span>
+            </v-expansion-panel-header>
             <v-expansion-panel-content>
-              {{ meal.strCategory }}
+              {{ meal.strArea }}
             </v-expansion-panel-content>
           </v-expansion-panel>
 
           <v-expansion-panel>
             <v-expansion-panel-header>
-              <span><v-icon class="mr-2">mdi-map-marker-radius</v-icon>Area</span>
-            </v-expansion-panel-header>
+              <span><v-icon class="mr-2">mdi-format-list-checks</v-icon>Category</span>
+            </v-expansion-panel-header>            
             <v-expansion-panel-content>
-              {{ meal.strArea }}
+              {{ meal.strCategory }}
             </v-expansion-panel-content>
           </v-expansion-panel>
 
@@ -52,12 +51,12 @@
                 <v-list-item 
                   v-for="( item, index ) in getIngredients()" 
                   :key="index"
-                  v-if="item" 
+                  v-if="item[0]" 
                 >
                   <v-list-item-content 
                     class="justify-center"
                   >
-                   {{item}}
+                    {{ item[0] }} - {{ item[1] }}
                   </v-list-item-content>
                 </v-list-item>
               </ul>
@@ -70,6 +69,15 @@
             </v-expansion-panel-header>
             <v-expansion-panel-content>
               {{ meal.strInstructions }}
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
+          <v-expansion-panel v-if="meal.strTags">
+            <v-expansion-panel-header>
+              <span><v-icon class="mr-2">mdi-pound</v-icon>Tags</span>
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              {{ meal.strTags }}
             </v-expansion-panel-content>
           </v-expansion-panel>
 
@@ -91,12 +99,22 @@ export default {
       ...mapActions(['getMeal']),
       getIngredients () {
         const ingredients = []
-        for (let key in this.meal) {
-          if (key.includes('strIngredient')) {
-            ingredients.push(this.meal[key])
+        const measures = []
+        const data = []
+        
+        for ( let key in this.meal ) {
+          if ( key.includes( 'strIngredient' ) ) {
+            ingredients.push( this.meal[key] )
+          } else if ( key.includes( 'strMeasure' ) ) {
+            measures.push( this.meal[key] )
           }
         }
-        return ingredients;
+
+        for (let i = 0; i < ingredients.length; i++) {
+          data.push([ingredients[i], measures[i]])
+        }
+
+        return data
       }
     },
     created () {

@@ -37,8 +37,9 @@
           <Card 
             :img="meal.strMealThumb"
             :title="meal.strMeal"
-            btn="Details"
             :to="`/meals/${meal.idMeal}`"
+            :visible="false"
+            btn="Details"
           />
         </div>
       </v-col>

@@ -13,8 +13,10 @@
           <Card 
             :img="category.strCategoryThumb"
             :title="category.strCategory"
-            btn="Seew meals"
+            :description="category.strCategoryDescription"
             :to="`/categories/${category.strCategory}`"
+            :visible="true"
+            btn="Seew meals"
           />
         </div>
       </v-col>

@@ -33,7 +33,7 @@ export default {
 
 ::-webkit-scrollbar 
 {
-  width: .60rem;
+  width: .4rem;
   border-radius: .5rem;
 }
 

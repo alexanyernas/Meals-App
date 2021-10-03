@@ -24,10 +24,53 @@
         color="primary"
         :to="`${to}`"
         rounded
+        class="mb-2"
       >
         {{ btn }}
       </v-btn>
+      <slot v-if="visible">
+        <v-spacer></v-spacer>
+        <v-btn
+          color="primary"
+          outlined
+          rounded
+          class="mb-2"
+          @click="reveal = true"
+        >
+          Learn more
+        </v-btn>
+      </slot>
     </v-card-actions>
+    <slot v-if="visible">
+      <v-fade-transition>
+        <v-card
+          v-if="reveal"
+          class="transition-fast-in-fast-out v-card--reveal"
+          style="height: 100%;"
+        >
+          <v-card-text class="pb-0 text-center">
+            <p class="text-h4 text--primary">
+              Description
+            </p>
+            <p>
+              {{ description }}
+            </p>
+          </v-card-text>
+          <v-card-actions class="pt-0">
+            <v-btn
+              class="ml-3"
+              color="red"
+              fab
+              outlined
+              x-small
+              @click="reveal = false"
+            >
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-fade-transition>
+    </slot>
   </v-card>
 </template>
 
@@ -38,7 +81,14 @@ export default {
         img: String,
         title: String,
         btn: String,
-        to: String
+        to: String,
+        description: String,
+        visible: Boolean
+    },
+    data () {
+      return {
+        reveal: false
+      }
     }
 }
 </script>
@@ -56,5 +106,14 @@ export default {
   {
     width: 300px;
   }
+}
+
+.v-card--reveal
+{
+  bottom: 0;
+  opacity: 1;
+  position: absolute;
+  width: 100%;
+  overflow: scroll;
 }
 </style>
