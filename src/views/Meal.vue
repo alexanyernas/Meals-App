@@ -11,11 +11,10 @@
         Back
       </v-btn>
     </v-row>
-    <v-row class="mt-5">
-      <MealCard 
+    <MealCard
+        class="mt-5" 
         :meal="meal" 
-      />
-    </v-row>
+    />
   </v-container>
 </template>
 
