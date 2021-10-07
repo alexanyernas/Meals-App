@@ -13,6 +13,17 @@
       <v-spacer></v-spacer>
 
       <v-btn
+        color="#1565C0"
+        rounded
+        to="/search" 
+      >
+        Search meal
+        <v-icon class="ml-2">mdi-magnify</v-icon>
+      </v-btn>
+      
+      <v-spacer></v-spacer>
+
+      <v-btn
         v-for="( link, index ) in links"
         :key="index"
         :href="link.url"

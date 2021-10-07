@@ -47,4 +47,12 @@ export default {
 {
   background-color: #1E88E5;
 }
+
+@media only screen and (max-width: 600px) 
+{
+  .v-toolbar__title
+  {
+    display: none;
+  }
+}
 </style>

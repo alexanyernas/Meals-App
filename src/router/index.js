@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Category from '../views/Category.vue'
 import Meal from '../views/Meal.vue'
+import Search from '../views/Search.vue'
 
 Vue.use ( VueRouter )
 
@@ -23,6 +24,11 @@ const routes = [
     path: '/meals/:meal',
     name: 'Meal',
     component: Meal,
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search,
   }
 ]
 

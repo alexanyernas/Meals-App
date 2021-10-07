@@ -46,6 +46,6 @@ export default new Vuex.Store({
         .then(( { data } ) => {
           commit( 'setMeal', data.meals[0] )
         })
+      }
     }
-  }
 })
